@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-8-openjdk-amd64"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/ImpalaJDBC4.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/hive_metastore.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/hive_service.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/httpclient-4.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/httpcore-4.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/libfb303-0.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/libthrift-0.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/ql.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/slf4j-api-1.5.11.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/slf4j-log4j12-1.5.11.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/TCLIServiceClient.jar"/>
+	<classpathentry kind="lib" path="/home/omarkrostom/Desktop/2.5.36.1056 GA/Cloudera_ImpalaJDBC4_2.5.36/zookeeper-3.4.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
