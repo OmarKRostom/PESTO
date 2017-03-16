@@ -29,6 +29,11 @@ public class JDBCclass implements JDBCInterface {
 	public PreparedStatement preparedStmt = null;
 	public ResultSet results;
 	
+	/**
+	 * @param driver : JDBC or HIVE
+	 * @param ip_address : IP Address of the impala host
+	 * @param port_number : Port Number, default is 21050
+	 */
 	public JDBCclass(String driver, String ip_address, String port_number) {
 		this.ip_address = ip_address;
 		this.port_number = port_number;
