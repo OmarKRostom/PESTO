@@ -59,7 +59,7 @@ All credits go to cloudera impala for providing an excellent community as well a
 [2]: https://twitter.com/OmarKRostom
 [3]: https://plus.google.com/u/0/115355957661112695248
 
-
 # Email
 <a href="mailto:o.rostom.93@gmail.com" target="_top">Send Mail (o.rostom.93@gmail.com)</a>
 
+<h6 align="center">Project in progress, and might contain issues, submit as an issue.</h6>
