@@ -63,7 +63,7 @@ public class JDBCclass implements JDBCInterface {
 	    queryStr = "CREATE TABLE IF NOT EXISTS " + table_name + " (" + paramsStr + ") STORED AS " + store_type + ";";
 	    try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate(queryStr);
+			stmt.execute(queryStr);
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -82,7 +82,7 @@ public class JDBCclass implements JDBCInterface {
 		String queryStr = "DROP TABLE " + table_name + ";";
 		try	{
 			stmt = conn.createStatement();
-			stmt.executeUpdate(queryStr);
+			stmt.execute(queryStr);
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -100,7 +100,7 @@ public class JDBCclass implements JDBCInterface {
 		String queryStr = "DROP DATABASE " + database_name + ";";
 		try	{
 			stmt = conn.createStatement();
-			stmt.executeUpdate(queryStr);
+			stmt.execute(queryStr);
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -216,6 +216,7 @@ public class JDBCclass implements JDBCInterface {
 		this.preparedStmt = prepStmt;
 		try {
 			this.preparedStmt.execute();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("An error occured while executing query :" + e.getMessage());
@@ -240,6 +241,59 @@ public class JDBCclass implements JDBCInterface {
 			System.out.println("Error casting into the prepared statement !" + e.getMessage());
 		}
 		return null;
+	}
+
+	/**
+	 * This is an executeQuery for prepared statements mainly used for getting a custom query prepared
+	 * statement from getPreparedStmtForCustomQuery after adding data into it.
+	 * @return ResultSet
+	 */
+	@Override
+	public ResultSet executeQueryprepStmt(PreparedStatement prepStmt) {
+		// TODO Auto-generated method stub
+		this.preparedStmt = prepStmt;
+		try {
+			ResultSet rs = this.preparedStmt.executeQuery();
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("An error occured while executing query :" + e.getMessage());
+		}
+		return null;
+	}
+
+	/**
+	 * This method for loading data into impala, one of the most brilliant methods in impala,
+	 * is to load avro or parquet file directly into impala machine, you only need
+	 * the file path and the table name for this, and whether you will overwrite existing data or not.
+	 * @return boolean
+	 */
+	@Override
+	public boolean loadDataIntoHDFS(String hdfs_directory, String table_name, boolean overwrite) {
+		// TODO Auto-generated method stub
+		String queryStr = "LOAD DATA INPATH '?'";
+		if(overwrite) {
+			queryStr += " ? ";
+		}
+		queryStr += " INTO TABLE ? ;";
+		try {
+			PreparedStatement prepStmt = conn.prepareStatement(queryStr);
+			if(!overwrite) {
+				prepStmt.setString(1, hdfs_directory);
+				prepStmt.setString(2, table_name);
+			} else {
+				prepStmt.setString(1, hdfs_directory);
+				prepStmt.setString(2, "OVERWRITE");
+				prepStmt.setString(3, table_name);
+			}
+			prepStmt.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("An error occured while executing sql : " + e.getMessage());
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }

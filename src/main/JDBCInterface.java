@@ -13,4 +13,6 @@ public interface JDBCInterface {
     public ResultSet selectFromTable(String table_name, String[] select_params, String case_param, LinkedHashMap case_when, String else_param, String case_flag, String where_params, String[] order_params, String[] group_params);
     public PreparedStatement getPreparedStmtForCustomQuery(String query);
     public boolean executeprepStmt(PreparedStatement prepStmt);
+    public ResultSet executeQueryprepStmt(PreparedStatement prepStmt);
+    public boolean loadDataIntoHDFS(String hdfs_directory, String table_name, boolean overwrite);
 }
