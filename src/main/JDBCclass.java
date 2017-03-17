@@ -178,50 +178,28 @@ public class JDBCclass implements JDBCInterface {
 	@Override
 	public PreparedStatement getPreparedStmtForInsert(String table_name, int no_of_params, int no_of_rows) {
 		// TODO Auto-generated method stub
-		if(no_of_params%no_of_rows==0) {
-			String queryStr = "INSERT INTO " + table_name + " VALUES ";
-			for(int i=0; i<no_of_rows ; i++) {
-				queryStr += "( ";
-				for(int j=0; j<no_of_params/no_of_rows; j++) {
-					queryStr += "?";
-					if(j<(no_of_params/no_of_rows)-1) {
-						queryStr += ", ";
-					}
-				}
-				queryStr += " )";
-				if(i<no_of_rows-1) {
+		String queryStr = "INSERT INTO " + table_name + " VALUES ";
+		for(int i=0; i<no_of_rows ; i++) {
+			queryStr += "( ";
+			for(int j=0; j<no_of_params; j++) {
+				queryStr += "?";
+				if(j<(no_of_params)-1) {
 					queryStr += ", ";
 				}
 			}
-			try {
-				this.preparedStmt = this.conn.prepareStatement(queryStr);
-				return this.preparedStmt;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("PreparedStatement could not be executed successfully, returning null !");
+			queryStr += " )";
+			if(i<no_of_rows-1) {
+				queryStr += ", ";
 			}
-		} else {
-			System.out.println("NUMBER OF PARAMETERS DOESNOT MATCH NUMBER OF ROWS TO BE INSERTED !");
 		}
-		return null;
-	}
-
-	/**
-	 * This method executes the PreparedStatement object given, based on your predefined connection.
-	 * @return boolean
-	 */
-	@Override
-	public boolean executeprepStmt(PreparedStatement prepStmt) {
-		// TODO Auto-generated method stub
-		this.preparedStmt = prepStmt;
 		try {
-			this.preparedStmt.execute();
-			return true;
+			this.preparedStmt = this.conn.prepareStatement(queryStr);
+			return this.preparedStmt;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("An error occured while executing query :" + e.getMessage());
+			System.out.println("PreparedStatement could not be executed successfully, returning null !");
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -244,25 +222,6 @@ public class JDBCclass implements JDBCInterface {
 	}
 
 	/**
-	 * This is an executeQuery for prepared statements mainly used for getting a custom query prepared
-	 * statement from getPreparedStmtForCustomQuery after adding data into it.
-	 * @return ResultSet
-	 */
-	@Override
-	public ResultSet executeQueryprepStmt(PreparedStatement prepStmt) {
-		// TODO Auto-generated method stub
-		this.preparedStmt = prepStmt;
-		try {
-			ResultSet rs = this.preparedStmt.executeQuery();
-			return rs;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("An error occured while executing query :" + e.getMessage());
-		}
-		return null;
-	}
-
-	/**
 	 * This method for loading data into impala, one of the most brilliant methods in impala,
 	 * is to load avro or parquet file directly into impala machine, you only need
 	 * the file path and the table name for this, and whether you will overwrite existing data or not.
@@ -271,21 +230,13 @@ public class JDBCclass implements JDBCInterface {
 	@Override
 	public boolean loadDataIntoHDFS(String hdfs_directory, String table_name, boolean overwrite) {
 		// TODO Auto-generated method stub
-		String queryStr = "LOAD DATA INPATH '?'";
+		String queryStr = "LOAD DATA INPATH '" + hdfs_directory + "' ";
 		if(overwrite) {
-			queryStr += " ? ";
+			queryStr += " OVERWRITE ";
 		}
-		queryStr += " INTO TABLE ? ;";
+		queryStr += " INTO TABLE " + table_name + " ;";
 		try {
 			PreparedStatement prepStmt = conn.prepareStatement(queryStr);
-			if(!overwrite) {
-				prepStmt.setString(1, hdfs_directory);
-				prepStmt.setString(2, table_name);
-			} else {
-				prepStmt.setString(1, hdfs_directory);
-				prepStmt.setString(2, "OVERWRITE");
-				prepStmt.setString(3, table_name);
-			}
 			prepStmt.execute();
 			return true;
 		} catch (SQLException e) {
