@@ -1,6 +1,5 @@
 <h1 align="center">PESTO</h1>
 <h6 align="center">A query builder for cloudera impala-shell</h6>
-<h6 align="center">Project in progress, and might contain issues</h6>
 
 # Description
 This is a tool, intended as a first place to be placed into a java web server application, a tool to be released Q2 
@@ -60,7 +59,7 @@ All credits go to cloudera impala for providing an excellent community as well a
 [2]: https://twitter.com/OmarKRostom
 [3]: https://plus.google.com/u/0/115355957661112695248
 
-
 # Email
 <a href="mailto:o.rostom.93@gmail.com" target="_top">Send Mail (o.rostom.93@gmail.com)</a>
 
+<h6 align="center">Project in progress, and might contain issues, submit as an issue.</h6>
