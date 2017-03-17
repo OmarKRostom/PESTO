@@ -1,5 +1,6 @@
 <h1 align="center">PESTO</h1>
 <h6 align="center">A query builder for cloudera impala-shell</h6>
+<h6 align="center">Project in progress, and might contain issues</h6>
 
 # Description
 This is a tool, intended as a first place to be placed into a java web server application, a tool to be released Q2 
