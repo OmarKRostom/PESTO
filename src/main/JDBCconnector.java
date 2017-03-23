@@ -35,6 +35,14 @@ public class JDBCconnector {
             System.out.println("JDBC DRIVER NOT FOUND");
         } catch (SQLException ex) {
             System.out.println("AN ERROR OCCURED WHILE CONNECTING TO IMPALA");
+        } finally {
+        	try {
+				this.conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("ERROR CLOSING CONNECTION");
+				e.printStackTrace();
+			}
         }
 	}
 	
